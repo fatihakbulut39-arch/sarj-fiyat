@@ -1,0 +1,46 @@
+name: Update Prices Every 3 Days
+
+on:
+  schedule:
+    - cron: '0 2 */3 * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    
+    - name: Run scraper
+      run: python3 scraper_runner.py
+    
+    - name: Upload to Cloudflare
+      run: |
+        python3 << 'EOF'
+        import json
+        import requests
+        
+        with open('data/charging_prices_standard.json', 'r', encoding='utf-8') as f:
+            prices = json.load(f)
+        
+        response = requests.post(
+            '${{ secrets.WORKER_URL }}/update',
+            json=prices,
+            headers={'X-API-Key': '${{ secrets.API_KEY }}'}
+        )
+        
+        print(f"Status: {response.status_code}")
+        if response.status_code == 200:
+            print("✅ Veriler güncellendi!")
+        else:
+            print(f"❌ Hata: {response.status_code}")
+        EOF
