@@ -36,6 +36,8 @@ ENV/
 # Data files
 data/*.json
 !data/.gitkeep
+!data/charging_station_urls.json
+!data/logo_map.json
 
 # Logs
 *.log

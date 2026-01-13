@@ -1,0 +1,17 @@
+name = "sarj-api"
+main = "cloudflare-worker.js"
+compatibility_date = "2024-12-10"
+workers_dev = true
+
+# KV Binding
+[[kv_namespaces]]
+binding = "PRICES_KV"
+id = "160e0497b6754e70acec3722818dc059"
+preview_id = "f4a7b4f5d9f54721907ee2d9563a9043"
+
+# Environment variables
+[env.production]
+vars = { API_KEY = "sarj-fiyat-api-key-2025" }
+
+[env.preview]
+vars = { API_KEY = "test-key" }

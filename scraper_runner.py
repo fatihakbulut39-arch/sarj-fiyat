@@ -118,13 +118,22 @@ class ScraperRunner:
                 if not dc_prices:
                     dc_prices = fallback.get('dc', [])
             
+            # Load logo URL from map
+            logo_url = None
+            try:
+                 with open('data/logo_map.json', 'r') as f:
+                     logo_map = json.load(f)
+                 logo_url = logo_map.get(url)
+            except:
+                 pass
+
             entry = {
                 "firma": company_name,
                 "ulke": "TR",
                 "webSitesi": url,
                 "acCurrency": "TRY",
                 "dcCurrency": "TRY",
-                "logoUrl": None,
+                "logoUrl": logo_url,
                 "acFiyat": min(ac_prices) if ac_prices else None,
                 "dcFiyat": max(dc_prices) if dc_prices else None
             }
