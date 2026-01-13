@@ -11,7 +11,7 @@ preview_id = "f4a7b4f5d9f54721907ee2d9563a9043"
 
 # Environment variables
 [env.production]
-vars = { API_KEY = "sarj-fiyat-api-key-2025" }
+vars = { API_KEY = "your-secret-key" }
 
 [env.preview]
 vars = { API_KEY = "test-key" }

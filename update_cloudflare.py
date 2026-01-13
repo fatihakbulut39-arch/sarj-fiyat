@@ -23,8 +23,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Config
-WORKER_URL = os.getenv('WORKER_URL', 'https://sarj-api.fatihakbulut39.workers.dev')
-API_KEY = os.getenv('CF_API_KEY', 'sarj-fiyat-api-key-2025')
+WORKER_URL = os.getenv('WORKER_URL', 'https://your-api.workers.dev')
+API_KEY = os.getenv('CF_API_KEY', 'your-secret-key')
 DATA_FILE = 'data/charging_prices_standard.json'
 
 def run_scraper():

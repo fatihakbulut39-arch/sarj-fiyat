@@ -23,8 +23,8 @@ pip install -r requirements.txt
 ### Manuel Çalıştırma
 Fiyatları güncelleyip Cloudflare'e göndermek için:
 ```bash
-export WORKER_URL="https://sarj-api.fatihakbulut39.workers.dev"
-export CF_API_KEY="senin-gizli-anahtarin"
+export WORKER_URL="https://your-api.workers.dev"
+export CF_API_KEY="your-secret-key"
 python3 update_cloudflare.py
 ```
 
